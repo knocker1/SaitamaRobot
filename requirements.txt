@@ -27,3 +27,4 @@ wikipedia
 telethon
 spamwatch
 alphabet_detector
+youtube-dl
