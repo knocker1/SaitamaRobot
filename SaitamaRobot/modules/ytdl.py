@@ -41,7 +41,7 @@ async def is_register_admin(chat, user):
     else:
         return None
 
-@telthn.on(events.NewMessage(pattern="^/yt(audio|video) (.*)"))
+@telethn.on(events.NewMessage(pattern="^/yt(audio|video) (.*)"))
 async def download_video(v_url):
     if v_url.is_group:
      if not (await is_register_admin(v_url.input_chat, v_url.message.sender_id)):
