@@ -44,7 +44,7 @@ async def is_register_admin(chat, user, client):
 @telethn.on(events.NewMessage(pattern="^/yt(audio|video) (.*)"))
 async def download_video(v_url):
     if v_url.is_group:
-     if not (await is_register_admin(v_url.input_chat, v_url.message.sender_id, event)):
+     if not (await is_register_admin(v_url.input_chat, v_url.message.sender_id, v_url)):
        return
     """ For .ytdl command, download media from YouTube and many other sites. """
     url = v_url.pattern_match.group(2)
