@@ -3,7 +3,7 @@ import time
 import math
 import asyncio
 import shutil
-import googleapiclient
+
 from youtube_dl import YoutubeDL
 from youtube_dl.utils import (DownloadError, ContentTooShortError,
                               ExtractorError, GeoRestrictedError,
@@ -12,7 +12,7 @@ from youtube_dl.utils import (DownloadError, ContentTooShortError,
 from asyncio import sleep
 from telethon import types
 from collections import deque
-from googleapiclient.discovery import build
+
 
 from html import unescape
 import requests
