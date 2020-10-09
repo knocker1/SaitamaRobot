@@ -41,7 +41,7 @@ class CustomCommandHandler(CommandHandler):
 
             if (message.entities and
                     message.entities[0].type == MessageEntity.BOT_COMMAND and
-                    message.entities[0].offset == 0 and any(.startswith(start) for start in CMD_STARTERS)):
+                    message.entities[0].offset == 0 and any(cmd.startswith(start) for start in CMD_STARTERS)):
                 command = message.text[1:message.entities[0].length]
                 args = message.text.split()[1:]
                 command = command.split('@')
