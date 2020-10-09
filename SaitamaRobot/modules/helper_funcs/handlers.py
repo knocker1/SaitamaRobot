@@ -7,7 +7,7 @@ from time import sleep
 if ALLOW_EXCL:
     CMD_STARTERS = ('/', '!')
 else:
-    CMD_STARTERS = ('/')
+    CMD_STARTERS = ('/',)
 
 
 class CustomCommandHandler(CommandHandler):
@@ -39,23 +39,25 @@ class CustomCommandHandler(CommandHandler):
                 if sql.is_user_blacklisted(user_id):
                     return False
 
-            if (message.entities and
-                    message.entities[0].type == MessageEntity.BOT_COMMAND and
-                    message.entities[0].offset == 0 and any(cmd.startswith(start) for start in CMD_STARTERS)):
-                command = message.text[1:message.entities[0].length]
-                args = message.text.split()[1:]
-                command = command.split('@')
-                command.append(message.bot.username)
 
-                if not (command[0].lower() in self.command and
-                        command[1].lower() == message.bot.username.lower()):
-                    return None
+            if message.text and len(message.text) > 1:
+                fst_word = message.text.split(None, 1)[0]
+                if len(fst_word) > 1 and any(
+                        fst_word.startswith(start) for start in CMD_STARTERS):
 
-                filter_result = self.filters(update)
-                if filter_result:
-                    return args, filter_result
-                else:
-                    return False
+                    args = message.text.split()[1:]
+                    command = fst_word[1:].split("@")
+                    command.append(message.bot.username)
+
+                    if not (command[0].lower() in self.command and
+                            command[1].lower() == message.bot.username.lower()):
+                        return None
+
+                    filter_result = self.filters(update)
+                    if filter_result:
+                        return args, filter_result
+                    else:
+                        return False
 
     def handle_update(self, update, dispatcher, check_result, context=None):
         if context:
