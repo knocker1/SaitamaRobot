@@ -28,7 +28,7 @@ class CustomCommandHandler(CommandHandler):
     def check_update(self, update):
         if isinstance(update, Update) and update.effective_message:
             message = update.effective_message
-            cmd = message.text_html.split(None, 1)[0]
+            cmd = update.message.text_html.split(None, 1)[0]
 
             try:
                 user_id = update.effective_user.id
