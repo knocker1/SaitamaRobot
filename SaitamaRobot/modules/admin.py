@@ -394,6 +394,6 @@ dispatcher.add_handler(SET_TITLE_HANDLER)
 #__mod_name__ = "Admin"
 #__command_list__ = ["adminlist", "admins", "invitelink", "promote", "demote"]
 #__handlers__ = [
-    ADMINLIST_HANDLER, PIN_HANDLER, UNPIN_HANDLER, INVITE_HANDLER,
-    PROMOTE_HANDLER, DEMOTE_HANDLER, SET_TITLE_HANDLER
+   # ADMINLIST_HANDLER, PIN_HANDLER, UNPIN_HANDLER, INVITE_HANDLER,
+    #PROMOTE_HANDLER, DEMOTE_HANDLER, SET_TITLE_HANDLER
 #]
