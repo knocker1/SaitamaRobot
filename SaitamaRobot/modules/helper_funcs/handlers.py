@@ -7,7 +7,7 @@ from time import sleep
 if ALLOW_EXCL:
     CMD_STARTERS = ('/', '!')
 else:
-    CMD_STARTERS = ('/',)
+    CMD_STARTERS = ('/')
 
 
 class CustomCommandHandler(CommandHandler):
@@ -28,6 +28,7 @@ class CustomCommandHandler(CommandHandler):
     def check_update(self, update):
         if isinstance(update, Update) and update.effective_message:
             message = update.effective_message
+            cmd = message.text_html.split(None, 1)[0]
 
             try:
                 user_id = update.effective_user.id
@@ -40,7 +41,7 @@ class CustomCommandHandler(CommandHandler):
 
             if (message.entities and
                     message.entities[0].type == MessageEntity.BOT_COMMAND and
-                    message.entities[0].offset == 0):
+                    message.entities[0].offset == 0 and any(.startswith(start) for start in CMD_STARTERS)):
                 command = message.text[1:message.entities[0].length]
                 args = message.text.split()[1:]
                 command = command.split('@')
