@@ -4,6 +4,7 @@ import math
 import asyncio
 import shutil
 import glob
+import subprocess
 
 from youtube_dl import YoutubeDL
 from youtube_dl.utils import (DownloadError, ContentTooShortError,
@@ -172,13 +173,14 @@ async def _(event):
         await event.edit("`Enter song name`")
         return
     await event.edit("Processing...")
+                  await event.edit("uploading")
     os.system(f"youtube-dl -x --audio-format mp3 --add-metadata --embed-thumbnai 'ytsearch:{song}'")
     l = glob.glob("*.mp3")
     if not l:
         await event.edit("`Song not found`")
         return
     await event.client.send_file(event.chat_id, l, supports_streaming=True, reply_to=event.message)
-    await event.delete()
+    #await event.delete()
     subprocess.check_output("rm -rf *.mp3",shell=True)
                   
   
