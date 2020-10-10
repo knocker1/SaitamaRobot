@@ -3,6 +3,7 @@ import time
 import math
 import asyncio
 import shutil
+import glob
 
 from youtube_dl import YoutubeDL
 from youtube_dl.utils import (DownloadError, ContentTooShortError,
