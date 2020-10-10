@@ -180,7 +180,7 @@ async def _(event):
         await event.edit("`Song not found`")
         return
     await event.client.send_file(event.chat_id, l, supports_streaming=True, reply_to=event.message)
-    #await event.delete()
+    await event.reply.delete()
     subprocess.check_output("rm -rf *.mp3",shell=True)
                   
   
