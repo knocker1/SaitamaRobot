@@ -165,8 +165,8 @@ async def download_video(v_url):
         os.remove(f"{ytdl_data['id']}.mp4")
                   
                   
-     @telethn.on(events.NewMessage(pattern="^/song (.*)"))
-     async def _(event):
+    @telethn.on(events.NewMessage(pattern="^/song (.*)"))
+    async def _(event):
     song = url = event.pattern_match.group(1) + " " + "song"
     if not song:
         await event.edit("`Enter song name`")
