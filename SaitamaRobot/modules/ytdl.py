@@ -5,6 +5,7 @@ import asyncio
 import shutil
 
 from youtube_dl import YoutubeDL
+from youtube_search import YoutubeSearch
 from youtube_dl.utils import (DownloadError, ContentTooShortError,
                               ExtractorError, GeoRestrictedError,
                               MaxDownloadsReached, PostProcessingError,
@@ -162,6 +163,23 @@ async def download_video(v_url):
             supports_streaming=True,
             caption=ytdl_data['title'])
         os.remove(f"{ytdl_data['id']}.mp4")
+                  
+                  
+     @telethn.on(events.NewMessage(pattern="^/song (.*)"))
+     async def _(event):
+    song = url = event.pattern_match.group(1) + " " + "song"
+    if not song:
+        await event.edit("`Enter song name`")
+        return
+    await event.edit("Processing...")
+    os.system(f"youtube-dl -x --audio-format mp3 --add-metadata --embed-thumbnai 'ytsearch:{song}'")
+    l = glob.glob("*.mp3")
+    if not l:
+        await event.edit("`Song not found`")
+        return
+    await event.client.send_file(event.chat_id, l, supports_streaming=True, reply_to=event.message)
+    await event.delete()
+    subprocess.check_output("rm -rf *.mp3",shell=True)
                   
   
 __help__ = """
