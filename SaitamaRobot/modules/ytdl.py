@@ -170,9 +170,9 @@ async def download_video(v_url):
 async def _(event):
     song = url = event.pattern_match.group(1) + " " + "song"
     if not song:
-        await event.edit("`Enter song name`")
+        await event.reply("`Enter song name`")
         return
-    await event.edit("Processing...")  #reply_to=event.message,"uploading"#
+    await event.reply("Processing...")  #reply_to=event.message,"uploading"#
     os.system(f"youtube-dl -x --audio-format mp3 --add-metadata --embed-thumbnai 'ytsearch:{song}'")
     l = glob.glob("*.mp3")
     if not l:
