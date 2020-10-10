@@ -5,7 +5,6 @@ import asyncio
 import shutil
 
 from youtube_dl import YoutubeDL
-from youtube_search import YoutubeSearch
 from youtube_dl.utils import (DownloadError, ContentTooShortError,
                               ExtractorError, GeoRestrictedError,
                               MaxDownloadsReached, PostProcessingError,
