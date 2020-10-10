@@ -172,8 +172,9 @@ async def _(event):
     if not song:
         await event.edit("`Enter song name`")
         return
-    await event.edit("Processing...")
-                 # await event.edit("uploading")
+    await event.edit(f"`Preparing to upload song:`\
+        \n**{ytdl_data['title']}**\
+        \nby *{ytdl_data['uploader']}*")          
     os.system(f"youtube-dl -x --audio-format mp3 --add-metadata --embed-thumbnai 'ytsearch:{song}'")
     l = glob.glob("*.mp3")
     if not l:
