@@ -36,16 +36,8 @@ async def _(event):
     await event.delete()
 
 __help__ = """
-*Song Download*
- x /song <text>: Downloads and Uploads The song!
-*Youtube Search*
- x /yt <text>: perform a youtube search
- 
- *Youtube Downloader*
- x /ytaudio <link> : Gives you direct mp3 audio 
- x /ytvideo <link>: Gives you direct mp4 video 
-*NOTE*
-Bot Downloads to server then uploads to the telegram . so have patience !
-Only group admins will able to use this command , others simply can use in bot's pm[!](https://telegra.ph/file/74b9a1bf04e93fc774d7b.png)
+*used for tagging multiple members in one command*
+ add me in your group
+type,hit /tagall to tag multiple members of your group with a single command
 """
-__mod_name__ = "tagall"
+__mod_name__ = "Tagging"
