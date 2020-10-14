@@ -1,4 +1,4 @@
-import gTTs
+import gtts
 import telegram
 import tg_bot
 from telegram import ChatAction
