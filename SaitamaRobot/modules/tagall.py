@@ -34,4 +34,5 @@ async def _(event):
     else:
         await event.reply(mentions)
     await event.delete()
+__help__ = """
 __mod_name__ = "tagall"
