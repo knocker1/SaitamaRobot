@@ -37,3 +37,10 @@ def tts(bot: Bot, update: Update, args):
         update.message.reply_voice(speech, quote=False)
 
 dispatcher.add_handler(CommandHandler('tts', tts, pass_args=True))
+
+__help__ = """
+*turns your text to audio format(beta phase)*
+just do as follows:-
+ -/tts <Any Text> : Converts text to speech.
+"""
+__mod_name__ = "text to audio"
