@@ -23,7 +23,7 @@ def tts(bot: Bot, update: Update, args):
     reply = " ".join(args)
     update.message.chat.send_action(ChatAction.RECORD_AUDIO)
     lang="ml"
-    tts = gTTS(reply, lang)
+    tts = (reply, lang)
     tts.save("k.mp3")
     with open("k.mp3", "rb") as f:
         linelist = list(f)
@@ -31,7 +31,7 @@ def tts(bot: Bot, update: Update, args):
     if linecount == 1:
         update.message.chat.send_action(ChatAction.RECORD_AUDIO)
         lang = "en"
-        tts = gTTS(reply, lang)
+        tts = (reply, lang)
         tts.save("k.mp3")
     with open("k.mp3", "rb") as speech:
         update.message.reply_voice(speech, quote=False)
