@@ -1,5 +1,3 @@
-import gtts
-import telegram
 import tg_bot
 from telegram import ChatAction
 from gtts import gTTS
