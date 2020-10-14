@@ -43,4 +43,4 @@ __help__ = """
 just do as follows:-
  -/tts <Any Text> : Converts text to speech.
 """
-__mod_name__ = "text to audio"
+__mod_name__ = "tts"
