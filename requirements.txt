@@ -30,3 +30,4 @@ alphabet_detector
 youtube-dl
 tswift
 gTTs
+gtts
