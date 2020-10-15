@@ -4,8 +4,6 @@ from telegram import Bot, Update, Message, Chat
 from telegram.ext import run_async
 
 from SaitamaRobot import dispatcher
-from SaitamaRobot.modules.disable import DisableAbleCommandHandler
-
 
 @run_async
 def lyrics(bot: Bot, update: Update, args):
@@ -44,6 +42,6 @@ __mod_name__ = "Songslyrics"
 
 
 
-LYRICS_HANDLER = DisableAbleCommandHandler("lyrics", lyrics, pass_args=True)
+LYRICS_HANDLER = CommandHandler("lyrics", lyrics, pass_args=True)
 
 dispatcher.add_handler(LYRICS_HANDLER)
