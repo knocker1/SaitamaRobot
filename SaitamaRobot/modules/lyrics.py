@@ -1,10 +1,10 @@
-import Song
+from tswift import Song
 
-import Bot, Update, Message, Chat
-import run_async
+from telegram import Bot, Update, Message, Chat
+from telegram.ext import run_async
 
-import dispatcher
-import DisableAbleCommandHandler
+from SaitamaRobot import dispatcher
+from SaitamaRobot.modules.disable import DisableAbleCommandHandler
 
 
 @run_async
