@@ -1,10 +1,10 @@
-from tswift import Song
+import Song
 
-from telegram import Bot, Update, Message, Chat
-from telegram.ext import run_async
+import Bot, Update, Message, Chat
+import run_async
 
-from tg_bot import dispatcher
-from tg_bot.modules.disable import DisableAbleCommandHandler
+import dispatcher
+import DisableAbleCommandHandler
 
 
 @run_async
