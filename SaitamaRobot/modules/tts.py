@@ -10,14 +10,15 @@ import time
 import requests
 from telegram import Message, Chat, Update, Bot, MessageEntity
 from telegram import ParseMode
-from telegram.ext import CommandHandler, run_async, Filters
+from telegram.ext import CommandHandler, run_async, Filters, CallbackContext
 from telegram.utils.helpers import escape_markdown, mention_html
 from SaitamaRobot import dispatcher
 from SaitamaRobot.__main__ import STATS
 from SaitamaRobot.modules.disable import DisableAbleCommandHandler
 from SaitamaRobot.modules.helper_funcs.extraction import extract_user
 
-def tts(bot: Bot, update: Update, args):
+def tts(update: Update, context: CallbackContext):
+    args = context.args
     current_time = datetime.strftime(datetime.now(), "%d.%m.%Y %H:%M:%S")
     filename = datetime.now().strftime("%d%m%y-%H%M%S%f")
     reply = " ".join(args)
@@ -36,7 +37,7 @@ def tts(bot: Bot, update: Update, args):
     with open("k.mp3", "rb") as speech:
         update.message.reply_voice(speech, quote=False)
 
-dispatcher.add_handler(CommandHandler('tts', tts, pass_args=True))
+dispatcher.add_handler(CommandHandler('tts', tts))
 
 __help__ = """
 *turns your text to audio format(beta phase)*
