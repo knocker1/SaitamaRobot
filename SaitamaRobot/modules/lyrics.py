@@ -33,6 +33,14 @@ def lyrics(bot: Bot, update: Update, args):
                 
         
                 
+
+
+
+LYRICS_HANDLER = CommandHandler("lyrics", lyrics, pass_args=True)
+
+dispatcher.add_handler(LYRICS_HANDLER)
+
+
 __help__ = """
 *Song lyrics Download*
  hue hue hue
@@ -40,8 +48,3 @@ __help__ = """
 
 __mod_name__ = "Songslyrics"
 
-
-
-LYRICS_HANDLER = CommandHandler("lyrics", lyrics, pass_args=True)
-
-dispatcher.add_handler(LYRICS_HANDLER)
