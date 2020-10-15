@@ -35,7 +35,10 @@ def lyrics(bot: Bot, update: Update, args):
                 
         
                 
-
+__help__ = """
+*Song lyrics Download*
+ hue hue hue
+"""
 
 __mod_name__ = "Songslyrics"
 
