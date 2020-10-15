@@ -1,7 +1,7 @@
 from tswift import Song
 
 from telegram import Bot, Update, Message, Chat
-from telegram.ext import run_async
+from telegram.ext import run_async, CommandHandler
 
 from SaitamaRobot import dispatcher
 
