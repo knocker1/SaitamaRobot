@@ -24,7 +24,7 @@ def tts(update: Update, context: CallbackContext):
     reply = " ".join(args)
     update.message.chat.send_action(ChatAction.RECORD_AUDIO)
     lang="ml"
-    tts = gTTs(reply, lang)
+    tts = gTTS(reply, lang)
     tts.save("k.mp3")
     with open("k.mp3", "rb") as f:
         linelist = list(f)
