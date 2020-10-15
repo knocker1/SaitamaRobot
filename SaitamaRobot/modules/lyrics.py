@@ -6,7 +6,8 @@ from telegram.ext import run_async, CommandHandler, CallbackContext
 from SaitamaRobot import dispatcher
 
 @run_async
-def lyrics(bot: Bot, update: Update, args):
+def lyrics(update: Update, context: CallbackContext):
+    args = context.args
     msg = update.effective_message
     query = " ".join(args)
     song = ""
