@@ -5,7 +5,7 @@ import asyncio
 import shutil
 import glob
 import subprocess
-
+import googleapiclient
 from youtube_dl import YoutubeDL
 from youtube_dl.utils import (DownloadError, ContentTooShortError,
                               ExtractorError, GeoRestrictedError,
@@ -18,6 +18,8 @@ from collections import deque
 
 from html import unescape
 import requests
+from googleapiclient.discovery import build
+from lucifer import YOUTUBE_API_KEY
 from SaitamaRobot import LOGGER, telethn
 from telethon import types, events
 from telethon.tl import functions
@@ -182,7 +184,72 @@ async def _(event):
     await event.client.send_file(event.chat_id, l, supports_streaming=True, reply_to=event.message)
     #await reply.delete()
     subprocess.check_output("rm -rf *.mp3",shell=True)
-                  
+
+YOUTUBE_API_KEY = "AIzaSyABkn6rhdDXiv7MYN0kYG8sd4jJ_PJdnZA"
+
+@telethn.on(events.NewMessage(pattern="^/yt (.*)"))
+async def yts_search(video_q):
+    # For .yts command, do a YouTube search from Telegram.
+    if video_q.is_group:
+     if not (await is_register_admin(video_q.input_chat,video_q.message.sender_id)):
+       return
+    query = video_q.pattern_match.group(1)
+    result = ''
+
+    if not YOUTUBE_API_KEY:
+        await video_q.reply(
+            "`Error: YouTube API key missing! Add it to environment vars or config.env.`"
+        )
+        return
+
+   
+    full_response = await youtube_search(query)
+    videos_json = full_response[1]
+
+    for video in videos_json:
+        title = f"{unescape(video['snippet']['title'])}"
+        link = f"https://youtu.be/{video['id']['videoId']}"
+        result += f"{title}\n{link}\n\n"
+
+    reply_text = f"**Search Query:**\n`{query}`\n\n**Results:**\n\n{result}"
+
+    await video_q.reply(reply_text, link_preview=False)
+
+
+async def youtube_search(query,
+                         order="relevance",
+                         token=None,
+                         location=None,
+                         location_radius=None):
+    """ Do a YouTube search. """
+    youtube = build('youtube',
+                    'v3',
+                    developerKey=YOUTUBE_API_KEY,
+                    cache_discovery=False)
+    search_response = youtube.search().list(
+        q=query,
+        type="video",
+        pageToken=token,
+        order=order,
+        part="id,snippet",
+        maxResults=10,
+        location=location,
+        locationRadius=location_radius).execute()
+
+    videos = []
+
+    for search_result in search_response.get("items", []):
+        if search_result["id"]["kind"] == "youtube#video":
+            videos.append(search_result)
+    try:
+        nexttok = search_response["nextPageToken"]
+        return (nexttok, videos)
+    except HttpError:
+        nexttok = "last_page"
+        return (nexttok, videos)
+    except KeyError:
+        nexttok = "KeyError, try again."
+        return (nexttok, videos)               
   
 __help__ = """
 *Song Download*
