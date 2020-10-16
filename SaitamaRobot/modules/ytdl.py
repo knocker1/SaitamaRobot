@@ -19,7 +19,7 @@ from collections import deque
 from html import unescape
 import requests
 from googleapiclient.discovery import build
-from SaitamaRobot import YOUTUBE_API_KEY
+#from SaitamaRobot import YOUTUBE_API_KEY
 from SaitamaRobot import LOGGER, telethn
 from telethon import types, events
 from telethon.tl import functions
