@@ -26,7 +26,7 @@ from telethon.tl import functions
 from telethon.tl.types import DocumentAttributeAudio
 
 # Check if user has admin rights
-async def is_register_admin(chat, user, client):
+async def is_register_admin(chat, user):
     if isinstance(chat, (types.InputPeerChannel, types.InputChannel)):
 
         return isinstance(
