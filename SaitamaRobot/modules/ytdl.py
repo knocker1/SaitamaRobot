@@ -158,7 +158,7 @@ async def download_video(v_url):
         os.remove(f"{ytdl_data['id']}.mp3")
     elif video:
         await lmao.edit(f"`Preparing to upload video:`\
-        \n**{ytdl_data['']}**\
+       \n**{ytdl_data['title']}**\
         \nby *{ytdl_data['uploader']}*")
         await v_url.client.send_file(
             v_url.chat_id,
