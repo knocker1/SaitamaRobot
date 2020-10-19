@@ -19,7 +19,7 @@ async def _(event):
     await event.delete()
 
 
-@telethn.on(events.NewMessage(pattern="/administrator"))
+@telethn.on(events.NewMessage(pattern="@admins"))
 async def _(event):
     if event.fwd_from:
         return
