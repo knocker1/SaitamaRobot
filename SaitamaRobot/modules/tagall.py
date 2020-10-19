@@ -14,7 +14,7 @@ async def _(event):
     mentions = "Hello"
     chat = await event.get_input_chat()
     async for x in telethn.iter_participants(chat, 100):
-        mentions += f" \n [{x.first_name}](tg://user?id={x.id})"
+        mentions += f"  [{x.first_name}](tg://user?id={x.id})"
     await event.reply(mentions)
     await event.delete()
 
@@ -23,10 +23,10 @@ async def _(event):
 async def _(event):
     if event.fwd_from:
         return
-    mentions = "Administrators : "
+    mentions = "Admins: "
     chat = await event.get_input_chat()
     async for x in telethn.iter_participants(chat, filter=ChannelParticipantsAdmins):
-        mentions += f" \n [{x.first_name}](tg://user?id={x.id})"
+        mentions += f" [{x.first_name}](tg://user?id={x.id})"
     reply_message = None
     if event.reply_to_msg_id:
         reply_message = await event.get_reply_message()
