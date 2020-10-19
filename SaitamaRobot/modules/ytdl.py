@@ -45,13 +45,13 @@ async def is_register_admin(chat, user, client):
     else:
         return None
 
-@telethn.on(events.NewMessage(pattern="^/yt(audio|video) (.*)"))
+@telethn.on(events.NewMessage(pattern="^/yt(a|v) (.*)"))
 async def download_video(v_url):
     
     url = v_url.pattern_match.group(2)
     type = v_url.pattern_match.group(1).lower()
     lmao = await v_url.reply("`Preparing to download...`")
-    if type == "audio":
+    if type == "a":
         opts = {
             'format':
             'bestaudio',
@@ -81,7 +81,7 @@ async def download_video(v_url):
         }
         video = False
         song = True
-    elif type == "video":
+    elif type == "v":
         opts = {
             'format':
             'best',
