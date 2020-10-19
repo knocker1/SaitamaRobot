@@ -7,7 +7,7 @@ from telethon.tl.types import ChannelParticipantsAdmins
 from SaitamaRobot import telethn
 
 
-@telethn.on(events.NewMessage(pattern="/tagall"))
+@telethn.on(events.NewMessage(pattern="@all"))
 async def _(event):
     if event.fwd_from:
         return
@@ -33,7 +33,7 @@ async def _(event):
         await reply_message.reply(mentions)
     else:
         await event.reply(mentions)
-    await event.delete()
+        #await event.delete()
 
 __help__ = """
 *used for tagging multiple members in one command*
