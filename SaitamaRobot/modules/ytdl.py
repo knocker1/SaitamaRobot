@@ -193,7 +193,7 @@ YOUTUBE_API_KEY = "AIzaSyABkn6rhdDXiv7MYN0kYG8sd4jJ_PJdnZA"
 async def yts_search(video_q):
     # For .yts command, do a YouTube search from Telegram.
     if video_q.is_group:
-     if not (await is_register_admin(video_q.input_chat,video_q.message.sender_id)):
+     if not (await is_register_admin(video_q.input_chat,video_q.message.sender_id, event)):
        return
     query = video_q.pattern_match.group(1)
     result = ''
