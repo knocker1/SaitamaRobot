@@ -104,6 +104,8 @@ async def download_video(v_url):
             'logtostderr':
             False,
             'quiet':
+            True,
+            'writesubtitles':
             True
         }
         song = False
